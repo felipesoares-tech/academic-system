@@ -17,11 +17,10 @@ public class FicharioProfessor {
         entrada = new Scanner(System.in);
     }
     private Professor buscaRegistro(int registro){
-        for (Professor professor : professores) {
-            if ((professor != null) && (professor.getRegistro() == registro)) {
-                return professor;
-            }
-        }
+        Professor professor = new Professor(registro);
+        if(professores.contains(professor))
+            return professores.get(professores.indexOf(professor));
+
         return null;
     }
     private Professor buscaNome(String nome){

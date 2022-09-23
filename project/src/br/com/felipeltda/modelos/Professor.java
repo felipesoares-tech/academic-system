@@ -15,6 +15,10 @@ public class Professor extends Pessoa{
         this.dataNascimento = dataNascimento;
 
     }
+
+    public Professor(int registro){
+        this.registro = registro;
+    }
     public int getRegistro() {
         return registro;
     }

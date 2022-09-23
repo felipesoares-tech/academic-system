@@ -18,11 +18,10 @@ public class FicharioAluno {
         this.opAlunoTurmas = opAlunoTurmas;
     }
     private Aluno buscaMatricula(String matricula){
-        for (Aluno aluno : alunos) {
-            if ((aluno != null) && (Objects.equals(aluno.getMatricula(), matricula))) {
-                return aluno;
-            }
-        }
+        Aluno aluno = new Aluno(matricula);
+        if(alunos.contains(aluno))
+            return alunos.get(alunos.indexOf(aluno));
+
         return null;
     }
     private Aluno buscaNome(String nome){

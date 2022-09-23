@@ -15,6 +15,9 @@ public class Aluno extends Pessoa{
         this.dataNascimento = dataNascimento;
 
     }
+    public Aluno(String matricula){
+        this.matricula = matricula;
+    }
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }

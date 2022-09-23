@@ -41,11 +41,10 @@ public class FicharioTurma {
     }
 
     private Turma buscaNome(String nome){
-        for (Turma turma : turmas) {
-            if ((turma != null) && (Objects.equals(turma.getNome().toLowerCase(), nome.toLowerCase()))) {
-                return turma;
-            }
-        }
+        Turma turma = new Turma(nome);
+        if(turmas.contains(turma))
+            return turmas.get(turmas.indexOf(turma));
+
         return null;
     }
     private Turma buscaCodigo(int codigo){
