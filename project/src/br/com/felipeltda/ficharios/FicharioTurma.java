@@ -98,8 +98,8 @@ public class FicharioTurma {
         }
     }
 
-    private boolean possuiAluno(Turma turma){
-        return turma.getAlunos().size() > 0;
+    private boolean turmaVazia(Turma turma){
+        return turma.getAlunos().isEmpty();
     }
 
     public void excluir(){
@@ -109,7 +109,7 @@ public class FicharioTurma {
         Turma turma = busca();
 
         try{
-            if(!possuiAluno(turma)){
+            if(turmaVazia(turma)){
                 System.out.println("Confirma a exclusão? (1-sim) e (2-não) ");
                 int resposta = entrada.nextInt();
                 if(resposta == 1){

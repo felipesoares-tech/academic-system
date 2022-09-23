@@ -16,7 +16,6 @@ public class FicharioProfessor {
         this.professores = professores;
         entrada = new Scanner(System.in);
     }
-
     private Professor buscaRegistro(int registro){
         for (Professor professor : professores) {
             if ((professor != null) && (professor.getRegistro() == registro)) {
@@ -33,31 +32,16 @@ public class FicharioProfessor {
         }
         return null;
     }
-    private Professor buscaCpf(String cpf){
-        for (Professor professor : professores) {
-            if ((professor != null) && (Objects.equals(professor.getCpf(), cpf))) {
-                return professor;
-            }
-        }
-        return null;
-    }
-
-    private Professor buscaProfessor(String valor, int opcao){
-        Professor professor=null;
-        switch (opcao) {
-            case 1 -> professor = buscaNome(valor);
-            case 2 -> professor = buscaCpf(valor);
-            default -> System.out.println("Opcao invalida");
-        }
-        return professor;
+    private Professor buscaProfessor(String nome){
+        return buscaNome(nome);
     }
     private Professor buscaProfessor(int valor){
         return buscaRegistro(valor);
     }
+
     private Professor busca(){
         System.out.println("===TIPO DE BUSCA===");
         System.out.println("[1] - Por Nome");
-        System.out.println("[2] - Por Cpf");
         System.out.println("[3] - Por Registro");
         short opcao = entrada.nextShort();
         entrada.skip("\n");
@@ -67,19 +51,13 @@ public class FicharioProfessor {
             case 1 -> {
                 System.out.println("Nome: ");
                 String nomeProfessor = entrada.nextLine();
-                professor = buscaProfessor(nomeProfessor,opcao);
+                professor = buscaProfessor(nomeProfessor);
             }
             case 2 -> {
-                System.out.println("Cpf: ");
-                String cpf = entrada.nextLine();
-                professor = buscaProfessor(cpf,opcao);
-            }
-            case 3 -> {
-                System.out.println("Registro: ");
+                System.out.println("Registro:: ");
                 int registro = entrada.nextInt();
                 professor = buscaProfessor(registro);
             }
-            default -> System.out.println("Opcao invalida!!");
         }
 
         return professor;
