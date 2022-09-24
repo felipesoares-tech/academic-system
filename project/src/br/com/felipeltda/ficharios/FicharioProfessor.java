@@ -41,7 +41,7 @@ public class FicharioProfessor {
     private Professor busca(){
         System.out.println("===TIPO DE BUSCA===");
         System.out.println("[1] - Por Nome");
-        System.out.println("[3] - Por Registro");
+        System.out.println("[2] - Por Registro");
         short opcao = entrada.nextShort();
         entrada.skip("\n");
 
@@ -53,10 +53,11 @@ public class FicharioProfessor {
                 professor = buscaProfessor(nomeProfessor);
             }
             case 2 -> {
-                System.out.println("Registro:: ");
+                System.out.println("Registro: ");
                 int registro = entrada.nextInt();
                 professor = buscaProfessor(registro);
             }
+            default -> System.out.println("Opçao invalida!");
         }
 
         return professor;
