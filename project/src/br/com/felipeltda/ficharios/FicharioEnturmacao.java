@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 import  java.util.Scanner;
 
-public class OpAlunoTurmas {
+public class FicharioEnturmacao {
     private final ArrayList<Turma> turmas;
     private final ArrayList<Aluno> alunos;
+    private final ArrayList<Enturmacao> enturmacoes;
     private final Scanner entrada;
 
-    public OpAlunoTurmas(ArrayList<Turma> turmas, ArrayList<Aluno> alunos) {
+    public FicharioEnturmacao(ArrayList<Turma> turmas, ArrayList<Aluno> alunos) {
         this.turmas = turmas;
         this.alunos = alunos;
         entrada = new Scanner(System.in);
+        enturmacoes = new ArrayList<>();
     }
 
     private Turma buscaNomeTurma(String nome) {
@@ -50,8 +52,17 @@ public class OpAlunoTurmas {
         return false;
     }
 
-    private boolean alunoVinculado(Turma turma, Aluno aluno) {
-        return turma.getAlunos().contains(aluno);
+    private String buscaEnturmacao(Aluno aluno){
+        Enturmacao enturmacao = new Enturmacao(aluno);
+        if(enturmacoes.contains(enturmacao))
+            return enturmacoes.get(enturmacoes.indexOf(enturmacao)).toString();
+        else
+            return "Enturmacao nao encontrada, O aluno informado nao foi enturmado";
+
+    }
+
+    private String buscaEnturmacao(int index){
+        return enturmacoes.get(index).toString();
     }
 
     protected boolean alunoExiste(Aluno aluno) {
@@ -73,6 +84,8 @@ public class OpAlunoTurmas {
         if (turma != null && aluno != null) {
             if (!alunoVinculado(aluno)){
                 turma.getAlunos().add(aluno);
+                Enturmacao enturmacao = new Enturmacao(turma,aluno);
+                enturmacoes.add(enturmacao);
                 System.out.println("Aluno vinculado com sucesso!");
             }
             else
@@ -97,6 +110,10 @@ public class OpAlunoTurmas {
                 if (resp == 1) {
                     assert turmaAluno != null;
                     turmaAluno.getAlunos().remove(aluno);
+
+                    Enturmacao enturmacao = new Enturmacao(aluno);
+                    enturmacoes.remove(enturmacao);
+
                     System.out.println("Aluno desvinculado com sucesso!");
                 } else
                     System.out.println("Operacao cancelada!");
@@ -108,38 +125,41 @@ public class OpAlunoTurmas {
 
     }
 
-    public void alterar() {
-        System.out.println(" === Alterar ENTURMACAO ==== ");
-        System.out.println("Informe o nome da turma: ");
-        String nomeTurma = entrada.nextLine();
-        Turma turma = buscaNomeTurma(nomeTurma);
+    public void consultar() {
+        System.out.println(" --==[Consultar Enturmação]==-- ");
+        System.out.println("1 - (Consulta por indice)");
+        System.out.println("2 - (Consulta por aluno)");
+        System.out.print("Opcao: ");
+        int opcao = entrada.nextInt();
+        entrada.skip("\n");
 
-        if (turma != null) {
-            System.out.println("Informe o nome do aluno que deseja alterar: ");
+        if(opcao == 1){
+            System.out.println("Qual a posição do vetor deseja consultar? ");
+            int index = entrada.nextInt();
+            entrada.skip("\n");
+            try{
+                System.out.println(buscaEnturmacao(index));
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("Posição inválida!");
+            }
+
+        }else if(opcao == 2){
+            System.out.println("Informe o nome do aluno o qual deseja consultar: ");
             String nomeAluno = entrada.nextLine();
-
             Aluno aluno = buscaNomeAluno(nomeAluno);
-
-            if (aluno != null) {
-                if (alunoVinculado(turma, aluno)) {
-                    System.out.println("Informe o nome do novo aluno: ");
-                    String nomeNovoAluno = entrada.nextLine();
-                    Aluno novoAluno = buscaNomeAluno(nomeNovoAluno);
-                    if (novoAluno != null) {
-                        if (!alunoVinculado(novoAluno)) {
-                            turma.getAlunos().remove(aluno);
-                            turma.getAlunos().add(novoAluno);
-                            System.out.println("Alteração realizada com sucesso!");
-                        } else
-                            System.out.println("Aluno informado já vinculado a uma turma, necessário desvincula-lo antes!");
-
-                    } else
-                        System.out.println("Aluno inexistente!");
-                } else
-                    System.out.println("Aluno nao pertence a esta turma");
-            } else
-                System.out.println("Aluno inexistente!");
-        }else
-            System.out.println("Turma inexistente");
+            System.out.println(buscaEnturmacao(aluno));
+        }
     }
+
+
+    public void relatorio() {
+
+        System.out.println("[Relatório de ENTURMACOES]");
+
+        for (Enturmacao enturmacao : enturmacoes) {
+            System.out.println(enturmacao);
+            System.out.println("---------------------");
+        }
+    }
+
 }

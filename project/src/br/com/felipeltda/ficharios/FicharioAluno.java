@@ -10,12 +10,12 @@ import java.util.Scanner;
 public class FicharioAluno {
     private final ArrayList<Aluno> alunos;
     private final Scanner entrada;
-    private final OpAlunoTurmas opAlunoTurmas;
+    private final FicharioEnturmacao ficharioEnturmacao;
 
-    public FicharioAluno(ArrayList<Aluno> alunos, OpAlunoTurmas opAlunoTurmas){
+    public FicharioAluno(ArrayList<Aluno> alunos, FicharioEnturmacao ficharioEnturmacao){
         this.alunos = alunos;
         entrada = new Scanner(System.in);
-        this.opAlunoTurmas = opAlunoTurmas;
+        this.ficharioEnturmacao = ficharioEnturmacao;
     }
     private Aluno buscaMatricula(String matricula){
         Aluno aluno = new Aluno(matricula);
@@ -84,7 +84,7 @@ public class FicharioAluno {
         Aluno aluno = busca();
 
         try{
-            if(opAlunoTurmas.alunoVinculado(aluno))
+            if(ficharioEnturmacao.alunoVinculado(aluno))
                 System.out.println("Nao foi possivel excluir o aluno em questao, pois o mesmo esta vinculado a uma turma");
             else{
                 System.out.println("Confirma a exclusão? (1-sim) e (2-não) ");

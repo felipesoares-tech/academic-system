@@ -25,8 +25,8 @@ public class Main {
         ArrayList<Turma> turmas  = new ArrayList<>();
         ArrayList<Professor> professores = new ArrayList<>();
         ArrayList<Aluno> alunos = new ArrayList<>();
-        OpAlunoTurmas opAlunoTurmas = new OpAlunoTurmas(turmas, alunos);
-        FicharioAluno ficharioAluno = new FicharioAluno(alunos, opAlunoTurmas);
+        FicharioEnturmacao ficharioEnturmacao = new FicharioEnturmacao(turmas, alunos);
+        FicharioAluno ficharioAluno = new FicharioAluno(alunos, ficharioEnturmacao);
         FicharioProfessor ficharioProfessor = new FicharioProfessor(professores);
         FicharioTurma ficharioTurma = new FicharioTurma(turmas);
 
@@ -89,13 +89,15 @@ public class Main {
                         System.out.println("===Enturmação===");
                         System.out.println("1 - Vincular Aluno");
                         System.out.println("2 - Desvincular Aluno");
-                        System.out.println("3 - Alterar Vinculo");
+                        System.out.println("3 - Consultar Enturmacao");
+                        System.out.println("4 - Relatorio Enturmacao");
                         System.out.println("0 - Voltar ao menu principal");
                         operacao = entrada.nextInt();
                         switch (operacao){
-                            case 1 -> opAlunoTurmas.vincular();
-                            case 2 -> opAlunoTurmas.desvincular();
-                            case 3 -> opAlunoTurmas.alterar();
+                            case 1 -> ficharioEnturmacao.vincular();
+                            case 2 -> ficharioEnturmacao.desvincular();
+                            case 3 -> ficharioEnturmacao.consultar();
+                            case 4 -> ficharioEnturmacao.relatorio();
                             default -> {if (operacao != 0 ) System.out.println("Opcao invalida");}
                         }
                     }while(operacao != 0);

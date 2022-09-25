@@ -20,6 +20,7 @@ public class Turma {
         return getNome().equals(turma.getNome());
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(getNome());
