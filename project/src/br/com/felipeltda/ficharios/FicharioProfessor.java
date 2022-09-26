@@ -64,16 +64,9 @@ public class FicharioProfessor {
     }
 
     public void cadastrar(){
-        int registro=0;
         System.out.println(" === Cadastrar PROFESSOR ==== ");
         System.out.print("Nome: ");
         String nome = entrada.nextLine();
-        try {
-            System.out.print("Registro: ");
-            registro = Integer.parseInt(entrada.nextLine());
-        }catch (NumberFormatException e){
-            System.out.println("O Valor informado precisa ser inteiro!");
-        }
         System.out.print("Telefone: ");
         String telefone = entrada.nextLine();
         System.out.print("CPF: ");
@@ -94,7 +87,7 @@ public class FicharioProfessor {
             System.out.println("Data no formato invalido");
         }
 
-        Professor professor = new Professor(nome,telefone,registro,cpf,email,data);
+        Professor professor = new Professor(nome,telefone,cpf,email,data);
         if(!professores.contains(professor)){
             professores.add(professor);
             return;
@@ -143,36 +136,30 @@ public class FicharioProfessor {
         if(professor != null){
             System.out.println(professor);
             System.out.println("Escolha o item a editar!");
-            System.out.println("[1] - Registro");
-            System.out.println("[2] - Nome");
-            System.out.println("[3] - Cpf");
-            System.out.println("[4] - Telefone");
-            System.out.println("[5] - E-mail");
+            System.out.println("[1] - Nome");
+            System.out.println("[2] - Cpf");
+            System.out.println("[3] - Telefone");
+            System.out.println("[4] - E-mail");
             short opcao = entrada.nextShort();
             entrada.skip("\n");
 
             switch (opcao) {
                 case 1 -> {
-                    System.out.print("Registro: ");
-                    int registro = entrada.nextInt();
-                    professor.setRegistro(registro);
-                }
-                case 2 -> {
                     System.out.print("Nome: ");
                     String nomeProfessor = entrada.nextLine();
                     professor.setNome(nomeProfessor);
                 }
-                case 3 -> {
+                case 2 -> {
                     System.out.print("Cpf: ");
                     String cpf = entrada.nextLine();
                     professor.setCpf(cpf);
                 }
-                case 4 -> {
+                case 3 -> {
                     System.out.print("Telefone: ");
                     String telefone = entrada.nextLine();
                     professor.setTelefone(telefone);
                 }
-                case 5 -> {
+                case 4 -> {
                     System.out.print("E-mail: ");
                     String email = entrada.nextLine();
                     professor.setEmail(email);

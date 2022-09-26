@@ -17,24 +17,16 @@ public class FicharioAluno {
         entrada = new Scanner(System.in);
         this.ficharioEnturmacao = ficharioEnturmacao;
     }
-    private Aluno buscaMatricula(String matricula){
+    private Aluno buscaAluno(int matricula){
         Aluno aluno = new Aluno(matricula);
         if(alunos.contains(aluno))
             return alunos.get(alunos.indexOf(aluno));
 
         return null;
     }
-    private Aluno buscaNome(String nome){
+    private Aluno buscaAluno(String nome){
         for (Aluno aluno : alunos) {
             if ((aluno != null) && (Objects.equals(aluno.getNome().toLowerCase(), nome.toLowerCase()))) {
-                return aluno;
-            }
-        }
-        return null;
-    }
-    private Aluno buscaCpf(String cpf){
-        for (Aluno aluno : alunos) {
-            if ((aluno != null) && (Objects.equals(aluno.getCpf(), cpf))) {
                 return aluno;
             }
         }
@@ -43,8 +35,7 @@ public class FicharioAluno {
     private Aluno busca(){
         System.out.println("===TIPO DE BUSCA===");
         System.out.println("[1] - Por Nome");
-        System.out.println("[2] - Por Cpf");
-        System.out.println("[3] - Por Matricula");
+        System.out.println("[2] - Por Matricula");
         short opcao = entrada.nextShort();
         entrada.skip("\n");
 
@@ -53,17 +44,12 @@ public class FicharioAluno {
             case 1 -> {
                 System.out.print("Nome: ");
                 String nomeAluno = entrada.nextLine();
-                aluno = buscaNome(nomeAluno);
+                aluno = buscaAluno(nomeAluno);
             }
             case 2 -> {
-                System.out.print("Cpf: ");
-                String cpf = entrada.nextLine();
-                aluno = buscaCpf(cpf);
-            }
-            case 3 -> {
                 System.out.print("Matricula: ");
-                String numeroMatricula = entrada.nextLine();
-                aluno = buscaMatricula(numeroMatricula);
+                int numeroMatricula = entrada.nextInt();
+                aluno = buscaAluno(numeroMatricula);
             }
             default -> System.out.println("Opcao invalida!!");
         }
@@ -106,15 +92,12 @@ public class FicharioAluno {
         System.out.println(" === Cadastrar ALUNO ==== ");
         System.out.print("Nome: ");
         String nome = entrada.nextLine();
-        System.out.print("Matrícula: ");
-        String matricula = entrada.nextLine();
         System.out.print("Telefone: ");
         String telefone = entrada.nextLine();
         System.out.print("CPF: ");
         String cpf = entrada.nextLine();
         System.out.print("E-mail: ");
         String email = entrada.nextLine();
-
         System.out.print("Informe a data de nascimento (dd/mm/yy): ");
         String dataNascimento = entrada.nextLine();
 
@@ -128,7 +111,7 @@ public class FicharioAluno {
             System.out.println("Data no formato invalido");
         }
 
-        Aluno aluno = new Aluno(nome,telefone,matricula,cpf,email,data);
+        Aluno aluno = new Aluno(nome,telefone,cpf,email,data);
 
         if(!alunos.contains(aluno)){
             alunos.add(aluno);
@@ -146,36 +129,30 @@ public class FicharioAluno {
         if(aluno != null){
             System.out.println(aluno.exibirDados());
             System.out.println("Escolha o item a editar!");
-            System.out.println("[1] - Matricula");
-            System.out.println("[2] - Nome");
-            System.out.println("[3] - Cpf");
-            System.out.println("[4] - Telefone");
-            System.out.println("[5] - E-mail");
+            System.out.println("[1] - Nome");
+            System.out.println("[2] - Cpf");
+            System.out.println("[3] - Telefone");
+            System.out.println("[4] - E-mail");
             short opcao = entrada.nextShort();
             entrada.skip("\n");
 
             switch (opcao) {
                 case 1 -> {
-                    System.out.print("Matrícula: ");
-                    String numeroMatricula = entrada.nextLine();
-                    aluno.setMatricula(numeroMatricula);
-                }
-                case 2 -> {
                     System.out.print("Nome: ");
                     String nomeAluno = entrada.nextLine();
                     aluno.setNome(nomeAluno);
                 }
-                case 3 -> {
+                case 2 -> {
                     System.out.print("Cpf: ");
                     String numeroCpf = entrada.nextLine();
                     aluno.setCpf(numeroCpf);
                 }
-                case 4 -> {
+                case 3 -> {
                     System.out.print("Telefone: ");
                     String numeroTelefone = entrada.nextLine();
                     aluno.setTelefone(numeroTelefone);
                 }
-                case 5 -> {
+                case 4 -> {
                     System.out.print("E-mail: ");
                     String email = entrada.nextLine();
                     aluno.setEmail(email);
