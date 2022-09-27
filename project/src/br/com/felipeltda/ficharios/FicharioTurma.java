@@ -26,12 +26,12 @@ public class FicharioTurma {
             case 1 -> {
                 System.out.println("Nome: ");
                 String nome = entrada.nextLine();
-                turma = buscaNome(nome);
+                turma = buscaTurma(nome);
             }
             case 2 -> {
                 System.out.println("Codigo: ");
                 int codigo = entrada.nextShort();
-                turma = buscaCodigo(codigo);
+                turma = buscaTurma(codigo);
                 entrada.skip("\n");
             }
             default -> System.out.println("Opcao invalida!!");
@@ -54,6 +54,14 @@ public class FicharioTurma {
             }
         }
         return null;
+    }
+
+    private Turma buscaTurma(int codigo){
+        return buscaCodigo(codigo);
+    }
+
+    private Turma buscaTurma(String nome){
+        return buscaNome(nome);
     }
     public void consultar(){
         System.out.println(" === Consultar TURMAS ==== ");

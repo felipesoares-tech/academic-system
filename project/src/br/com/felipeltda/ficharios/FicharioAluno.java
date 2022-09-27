@@ -17,39 +17,46 @@ public class FicharioAluno {
         entrada = new Scanner(System.in);
         this.ficharioEnturmacao = ficharioEnturmacao;
     }
-    private Aluno buscaAluno(int matricula){
+
+    private Aluno buscaMatricula(int matricula){
         Aluno aluno = new Aluno(matricula);
         if(alunos.contains(aluno))
             return alunos.get(alunos.indexOf(aluno));
-
         return null;
     }
-    private Aluno buscaAluno(String nome){
+
+    private Aluno buscaCpf(String cpf){
         for (Aluno aluno : alunos) {
-            if ((aluno != null) && (Objects.equals(aluno.getNome().toLowerCase(), nome.toLowerCase()))) {
+            if (Objects.equals(aluno.getCpf(), cpf)) {
                 return aluno;
             }
         }
         return null;
     }
+    private Aluno buscaAluno(int matricula){
+        return buscaMatricula(matricula);
+    }
+    private Aluno buscaAluno(String cpf){
+        return buscaCpf(cpf);
+    }
     private Aluno busca(){
         System.out.println("===TIPO DE BUSCA===");
-        System.out.println("[1] - Por Nome");
-        System.out.println("[2] - Por Matricula");
+        System.out.println("[1] - Por Matricula");
+        System.out.println("[2] - Por Cpf");
         short opcao = entrada.nextShort();
         entrada.skip("\n");
 
         Aluno aluno =  null;
         switch (opcao) {
             case 1 -> {
-                System.out.print("Nome: ");
-                String nomeAluno = entrada.nextLine();
-                aluno = buscaAluno(nomeAluno);
+                System.out.print("Matricula: ");
+                int matricula = entrada.nextInt();
+                aluno = buscaAluno(matricula);
             }
             case 2 -> {
-                System.out.print("Matricula: ");
-                int numeroMatricula = entrada.nextInt();
-                aluno = buscaAluno(numeroMatricula);
+                System.out.print("Cpf: ");
+                String cpf = entrada.nextLine();
+                aluno = buscaAluno(cpf);
             }
             default -> System.out.println("Opcao invalida!!");
         }

@@ -13,19 +13,6 @@ public class Turma {
         geradorCodigo -= 1;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Turma turma)) return false;
-        return getNome().equals(turma.getNome());
-    }
-
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getNome());
-    }
-
     public ArrayList<Aluno> getAlunos() {
         return alunos;
     }
@@ -51,5 +38,16 @@ public class Turma {
     @Override
     public String toString() {
         return "nome="+nome+" codigo="+codigo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Turma turma)) return false;
+        return getNome().equals(turma.getNome());
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNome());
     }
 }

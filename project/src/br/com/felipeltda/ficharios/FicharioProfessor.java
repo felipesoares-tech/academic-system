@@ -5,7 +5,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class FicharioProfessor {
@@ -17,30 +16,30 @@ public class FicharioProfessor {
         entrada = new Scanner(System.in);
     }
     private Professor buscaRegistro(int registro){
-        Professor professor = new Professor(registro);
-        if(professores.contains(professor))
-            return professores.get(professores.indexOf(professor));
-
-        return null;
-    }
-    private Professor buscaNome(String nome){
         for (Professor professor : professores) {
-            if ((professor != null) && (Objects.equals(professor.getNome().toLowerCase(), nome.toLowerCase()))) {
+            if (professor.getRegistro() == registro) {
                 return professor;
             }
         }
         return null;
     }
-    private Professor buscaProfessor(String nome){
-        return buscaNome(nome);
+    private Professor buscaCpf(String cpf){
+        Professor professor = new Professor(cpf);
+        if(professores.contains(professor))
+            return professores.get(professores.indexOf(professor));
+
+        return null;
     }
-    private Professor buscaProfessor(int valor){
-        return buscaRegistro(valor);
+    private Professor buscaProfessor(String cpf){
+        return buscaCpf(cpf);
+    }
+    private Professor buscaProfessor(int registro){
+        return buscaRegistro(registro);
     }
 
     private Professor busca(){
         System.out.println("===TIPO DE BUSCA===");
-        System.out.println("[1] - Por Nome");
+        System.out.println("[1] - Por Cpf");
         System.out.println("[2] - Por Registro");
         short opcao = entrada.nextShort();
         entrada.skip("\n");
@@ -48,9 +47,9 @@ public class FicharioProfessor {
         Professor professor =  null;
         switch (opcao) {
             case 1 -> {
-                System.out.println("Nome: ");
-                String nomeProfessor = entrada.nextLine();
-                professor = buscaProfessor(nomeProfessor);
+                System.out.println("Cpf: ");
+                String cpf = entrada.nextLine();
+                professor = buscaProfessor(cpf);
             }
             case 2 -> {
                 System.out.println("Registro: ");
