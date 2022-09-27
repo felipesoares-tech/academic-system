@@ -86,6 +86,7 @@ public class FicharioEnturmacao {
                 turma.getAlunos().add(aluno);
                 Enturmacao enturmacao = new Enturmacao(turma,aluno);
                 enturmacoes.add(enturmacao);
+                aluno.setSituacaoAluno(SituacaoAluno.matriculado);
                 System.out.println("Aluno vinculado com sucesso!");
             }
             else
@@ -113,7 +114,7 @@ public class FicharioEnturmacao {
 
                     Enturmacao enturmacao = new Enturmacao(aluno);
                     enturmacoes.remove(enturmacao);
-
+                    aluno.setSituacaoAluno(SituacaoAluno.naoMatriculado);
                     System.out.println("Aluno desvinculado com sucesso!");
                 } else
                     System.out.println("Operacao cancelada!");

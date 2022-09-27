@@ -6,7 +6,13 @@ import java.util.Objects;
 public class Aluno extends Pessoa{
     private final int matricula;
     protected String cpf;
+
+    public void setSituacaoAluno(SituacaoAluno situacaoAluno) {
+        this.situacaoAluno = situacaoAluno;
+    }
+
     private static int geradorCodigo;
+    private SituacaoAluno situacaoAluno = SituacaoAluno.naoMatriculado;
     public Aluno(String nome, String telefone, String cpf, String email, LocalDate dataNascimento){
         this.telefone = telefone;
         this.nome = nome;
@@ -14,7 +20,6 @@ public class Aluno extends Pessoa{
         this.cpf = cpf;
         this.email = email;
         this.dataNascimento = dataNascimento;
-
     }
     public Aluno(int matricula){
         this.matricula = matricula;
@@ -26,7 +31,7 @@ public class Aluno extends Pessoa{
     }
     public String exibirDados(){
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "nome="+nome+" cpf="+cpf+" telefone="+telefone+" email="+email+" matricula="+matricula + " data de nascimento="+dataNascimento.format(formatador);
+        return "nome="+nome+" cpf="+cpf+" telefone="+telefone+" email="+email+" matricula="+matricula + " data de nascimento="+dataNascimento.format(formatador) + " situacao: "+situacaoAluno;
     }
 
     @Override
