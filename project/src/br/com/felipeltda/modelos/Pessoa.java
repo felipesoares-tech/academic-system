@@ -3,7 +3,7 @@ package br.com.felipeltda.modelos;
 import java.time.*;
 import java.util.Objects;
 
-public class Pessoa{
+public abstract class Pessoa{
     protected String nome;
     protected String cpf;
     protected String telefone;
@@ -13,7 +13,6 @@ public class Pessoa{
     public Pessoa(){
 
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
