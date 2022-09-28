@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import  java.util.Scanner;
 
-public class FicharioEnturmacao {
+public class FicharioEnturmacao implements Fichario{
     private final ArrayList<Turma> turmas;
     private final ArrayList<Aluno> alunos;
     private final ArrayList<Enturmacao> enturmacoes;
@@ -69,7 +69,7 @@ public class FicharioEnturmacao {
         return alunos.contains(aluno);
     }
 
-    public void vincular() {
+    public void cadastrar() {
         System.out.println(" === Vincular Aluno Turma === ");
 
         System.out.println("Nome da turma: ");
@@ -96,7 +96,7 @@ public class FicharioEnturmacao {
 
     }
 
-    public void desvincular() {
+    public void excluir() {
         System.out.println(" --==[Desvincular Aluno]==-- ");
 
         System.out.println("Digite o nome do aluno: ");
@@ -152,6 +152,10 @@ public class FicharioEnturmacao {
         }
     }
 
+    @Override
+    public void alterar() {
+
+    }
 
     public void relatorio() {
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class FicharioAluno {
+public class FicharioAluno implements Fichario{
     private final ArrayList<Aluno> alunos;
     private final Scanner entrada;
     private final FicharioEnturmacao ficharioEnturmacao;

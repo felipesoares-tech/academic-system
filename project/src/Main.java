@@ -94,8 +94,8 @@ public class Main {
                         System.out.println("0 - Voltar ao menu principal");
                         operacao = entrada.nextInt();
                         switch (operacao){
-                            case 1 -> ficharioEnturmacao.vincular();
-                            case 2 -> ficharioEnturmacao.desvincular();
+                            case 1 -> ficharioEnturmacao.cadastrar();
+                            case 2 -> ficharioEnturmacao.excluir();
                             case 3 -> ficharioEnturmacao.consultar();
                             case 4 -> ficharioEnturmacao.relatorio();
                             default -> {if (operacao != 0 ) System.out.println("Opcao invalida");}
