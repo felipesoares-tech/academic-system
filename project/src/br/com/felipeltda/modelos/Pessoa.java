@@ -7,6 +7,10 @@ public abstract class Pessoa{
     protected String nome;
     protected String cpf;
 
+    public String getTelefone() {
+        return telefone;
+    }
+
     public String getEmail() {
         return email;
     }
